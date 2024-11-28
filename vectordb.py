@@ -63,7 +63,14 @@ word_to_index = checkpoint['word_to_index']  # Restore word-to-index mapping
 print("Full model and optimizer state restored!")
 print(list(word_to_index)[:100])
 
-target_word = "metsä"  # Replace with a Finnish word in your vocabulary
+import sys
+
+
+if len(sys.argv) > 1:
+    target_word = sys.argv[1]
+else: target_word = "act"  # Replace with a Finnish word in your vocabulary
+
+
 try:
     closest_words = find_closest_words(target_word, word2vec, word_to_index, top_n=5)
     print(f"Closest words to '{target_word}':")
